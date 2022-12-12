@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RepMax2.Pages.AddExercisePage"
+             Title="{Binding Title}">
+    <VerticalStackLayout>
+        
+        <Label Text="Track New Exercise Set" FontSize="Large" HorizontalTextAlignment="Center" Margin="0, 10, 0, 20"/>       
+        
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <!-- Row 0 -->
+            <Label Text="Exercise:" Grid.Row="0" Grid.Column="0" FontSize="Medium" FontAttributes="Bold" HorizontalTextAlignment="End" VerticalTextAlignment="Center" Margin="40, 0, 10, 0"/>
+            <Entry Grid.Row="0" Grid.Column="1" Placeholder="Name" FontSize="Body" Text="{Binding Name}" BackgroundColor="LightGray" Margin="0, 0, 50, 0" />
+            <!-- Row 1 -->
+            <Label Text="Weight:" Grid.Row="1" Grid.Column="0" FontSize="Medium" FontAttributes="Bold" HorizontalTextAlignment="End" VerticalTextAlignment="Center" Margin="40, 0, 10, 0"/>
+            <Entry Grid.Row="1" Grid.Column="1" Keyboard="Numeric" Placeholder="# lbs" Text="{Binding Weight}" BackgroundColor="LightGrey" Margin="0, 0, 50, 0"/>
+            <!-- Row 2 -->
+            <Label Text="Reps:" Grid.Row="2" Grid.Column="0" FontSize="Medium" FontAttributes="Bold" HorizontalTextAlignment="End" VerticalTextAlignment="Center" Margin="40, 0, 10, 0"/>
+            <Entry Grid.Row="2" Grid.Column="1" Keyboard="Numeric" Placeholder="# reps" Text="{Binding Reps}" BackgroundColor="LightGrey" Margin="0, 0, 50, 0"/>
+            
+            <!-- Row 3 -->
+            <Line BackgroundColor="Black" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" StrokeThickness="2" Margin="10, 0, 10, 0"/>
+            
+            <!-- Row 4 -->
+            <Label Text="Est 1RM:" Grid.Row="4" Grid.Column="0" FontSize="Medium" FontAttributes="Bold" HorizontalTextAlignment="End" VerticalTextAlignment="Center" Margin="40, 0, 10, 0"/>
+            <Label Grid.Row="4" Grid.Column="1" Text="{Binding Est1Rm}" FontSize="Large" FontAttributes="Bold" />
+            
+
+            <!-- Row 5 -->
+            <Button
+                Margin="0,100,0,0"
+                x:Name="Save"
+                Text="Save"
+                WidthRequest="150"
+                SemanticProperties.Hint="Saves the Exercise Set"                
+                Command="{Binding SaveCommand}"
+                HorizontalOptions="Center" 
+                Grid.Row="5"
+                Grid.ColumnSpan="2"/> 
+        </Grid>
+    </VerticalStackLayout>
+    
+</ContentPage>
