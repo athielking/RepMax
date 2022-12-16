@@ -3,6 +3,28 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="RepMax2.Pages.AddExercisePage"
              Title="{Binding Title}">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="LabelStyle"
+                   TargetType="{x:Type Label}">
+                <Setter Property="FontSize"
+                        Value="{StaticResource MediumSize}" />
+                <Setter Property="FontAttributes"
+                        Value="Bold"/>
+                <Setter Property="VerticalTextAlignment"
+                        Value="Center" />
+                <Setter Property="Margin"
+                        Value="40, 0, 10, 0" />
+            </Style>
+            <Style x:Key="EntryStyle"
+                   TargetType="{x:Type Entry}">
+                <Setter Property="BackgroundColor"
+                        Value="LightGray" />
+                <Setter Property="Margin"
+                        Value="0, 0, 50, 0" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <VerticalStackLayout>
         
         <Label Text="Track New Exercise Set" FontSize="Large" HorizontalTextAlignment="Center" Margin="0, 10, 0, 20"/>       
@@ -20,22 +42,56 @@
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
+            
             <!-- Row 0 -->
-            <Label Text="Exercise:" Grid.Row="0" Grid.Column="0" FontSize="Medium" FontAttributes="Bold" HorizontalTextAlignment="End" VerticalTextAlignment="Center" Margin="40, 0, 10, 0"/>
-            <Entry Grid.Row="0" Grid.Column="1" Placeholder="Name" FontSize="Body" Text="{Binding Name}" BackgroundColor="LightGray" Margin="0, 0, 50, 0" />
+            <Label Text="Exercise:" 
+                   Grid.Row="0" 
+                   Grid.Column="0" 
+                   Style="{StaticResource LabelStyle}"/>
+            <Entry Placeholder="Name"
+                   Grid.Row="0" 
+                   Grid.Column="1"
+                   Text="{Binding Name.Value}"
+                   Style="{StaticResource EntryStyle}"/>
+            
             <!-- Row 1 -->
-            <Label Text="Weight:" Grid.Row="1" Grid.Column="0" FontSize="Medium" FontAttributes="Bold" HorizontalTextAlignment="End" VerticalTextAlignment="Center" Margin="40, 0, 10, 0"/>
-            <Entry Grid.Row="1" Grid.Column="1" Keyboard="Numeric" Placeholder="# lbs" Text="{Binding Weight}" BackgroundColor="LightGrey" Margin="0, 0, 50, 0"/>
+            <Label Text="Weight:" 
+                   Grid.Row="1" 
+                   Grid.Column="0"
+                   Style="{StaticResource LabelStyle}"/>
+            <Entry Placeholder="# lbs" 
+                   Grid.Row="1"
+                   Grid.Column="1"
+                   Keyboard="Numeric" 
+                   Text="{Binding Weight}"
+                   Style="{StaticResource EntryStyle}"/>
+            
             <!-- Row 2 -->
-            <Label Text="Reps:" Grid.Row="2" Grid.Column="0" FontSize="Medium" FontAttributes="Bold" HorizontalTextAlignment="End" VerticalTextAlignment="Center" Margin="40, 0, 10, 0"/>
-            <Entry Grid.Row="2" Grid.Column="1" Keyboard="Numeric" Placeholder="# reps" Text="{Binding Reps}" BackgroundColor="LightGrey" Margin="0, 0, 50, 0"/>
+            <Label Text="Reps:" 
+                   Grid.Row="2" 
+                   Grid.Column="0"
+                   Style="{StaticResource LabelStyle}"/>
+            <Entry Placeholder="# reps" 
+                   Grid.Row="2" 
+                   Grid.Column="1"
+                   Keyboard="Numeric" 
+                   Text="{Binding Reps}"
+                   Style="{StaticResource EntryStyle}"/>
             
             <!-- Row 3 -->
             <Line BackgroundColor="Black" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" StrokeThickness="2" Margin="10, 0, 10, 0"/>
             
             <!-- Row 4 -->
-            <Label Text="Est 1RM:" Grid.Row="4" Grid.Column="0" FontSize="Medium" FontAttributes="Bold" HorizontalTextAlignment="End" VerticalTextAlignment="Center" Margin="40, 0, 10, 0"/>
-            <Label Grid.Row="4" Grid.Column="1" Text="{Binding Est1Rm}" FontSize="Large" FontAttributes="Bold" />
+            <Label Text="Est 1RM:" 
+                   Grid.Row="4" 
+                   Grid.Column="0" 
+                   Style="{StaticResource LabelStyle}" 
+                   HorizontalTextAlignment="End" />
+            <Label Grid.Row="4" 
+                   Grid.Column="1" 
+                   Text="{Binding Est1Rm}" 
+                   FontSize="Large" 
+                   FontAttributes="Bold" />
             
 
             <!-- Row 5 -->
@@ -48,8 +104,22 @@
                 Command="{Binding SaveCommand}"
                 HorizontalOptions="Center" 
                 Grid.Row="5"
-                Grid.ColumnSpan="2"/> 
+                Grid.ColumnSpan="2">
+            </Button>
         </Grid>
+        <ActivityIndicator      
+            Color="LightGreen"
+            IsRunning="{Binding IsBusy}"
+            IsVisible="{Binding IsBusy}"
+            VerticalOptions="Center"
+            HorizontalOptions="Center">
+            <ActivityIndicator.WidthRequest>
+                <OnPlatform x:TypeArguments="x:Double">
+                    <On Platform="iOS, Android" Value="100" />
+                    <On Platform="WinUI" Value="400" />
+                </OnPlatform>
+            </ActivityIndicator.WidthRequest>
+        </ActivityIndicator>
     </VerticalStackLayout>
     
 </ContentPage>

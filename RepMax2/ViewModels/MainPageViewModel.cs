@@ -42,6 +42,11 @@ namespace RepMax2.ViewModels
             });
         }
 
+        private async Task NavigateAsync()
+        {
+
+        }
+
         public async Task LoadData()
         {
             await _repository.EnsureDbVersion();
